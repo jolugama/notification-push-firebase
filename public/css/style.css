@@ -17,21 +17,23 @@
   width: 60px;
 }
 
-.peque-images img {
-  width: 30%;
-  background-size: cover;
-}
 
 .peque-images img {
-  width: 30%;
+  width: 40%;
   background-size: cover;
 }
 
 .peque-images2 img {
-  width: 30%;
+  width: 40%;
   background-size: cover;
   transform: rotate(-10deg);
   margin: 10px;
+}
+
+.peque-images2b img{
+  width: 45%;
+  background-size: cover;
+  margin: 20px;
 }
 
 

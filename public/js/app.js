@@ -222,7 +222,7 @@
  let _enviarNotificacion = (titulo, cuerpo) => {
      const notificationOpts = {
          body: cuerpo,
-         icon: 'img/icons/icon-72x72.png'
+         icon: 'images/icons/icon-72x72.png'
      };
      const n = new Notification(titulo, notificationOpts);
      n.onclick = () => {

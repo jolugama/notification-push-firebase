@@ -12,14 +12,14 @@ const APP_SHELL = [
     '/',
     'index.html',
     'css/style.css',
-    'img/favicon.ico',
+    'images/favicon.ico',
     'js/app.js',
     'js/sw-utils.js',
     'js/libs/plugins/mdtoast.min.js',
     'js/libs/plugins/mdtoast.min.css',
-    'img/avatars/hombre.png',
-    'img/avatars/mujer.png',
-    'img/avatars/trans.png',
+    'images/avatars/hombre.png',
+    'images/avatars/mujer.png',
+    'images/avatars/trans.png',
 ];
 
 const APP_SHELL_INMUTABLE = [
@@ -104,9 +104,9 @@ self.addEventListener('push', e => {
     const imagen = data.imagen && data.imagen.length > 5 ? data.imagen : 'https://cdn.shopify.com/s/files/1/1002/8034/products/Giau1A_2048x.jpg?v=1599814490';
     const options = {
         body: data.cuerpo,
-        // icon: 'img/icons/icon-72x72.png',
-        icon: `img/avatars/${ data.sexo }.png`,
-        badge: 'img/favicon.ico',
+        // icon: 'images/icons/icon-72x72.png',
+        icon: `images/avatars/${ data.sexo }.png`,
+        badge: 'images/favicon.ico',
         image: imagen,
         vibrate: [125, 75, 125, 275, 200, 275, 125, 75, 125, 275, 200, 600, 200, 600],
         openUrl: '/',
@@ -119,12 +119,12 @@ self.addEventListener('push', e => {
         actions: [{
                 action: 'a-action',
                 title: 'Acción A',
-                icon: 'img/avatar/a.jpg'
+                icon: 'images/avatar/a.jpg'
             },
             {
                 action: 'b-action',
                 title: 'Acción B',
-                icon: 'img/avatar/b.jpg'
+                icon: 'images/avatar/b.jpg'
             }
         ]
     };

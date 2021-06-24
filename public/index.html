@@ -85,59 +85,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-messaging.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyDzCa49qFHdSHVPCAGjSkbg0otzfdYYdNk",
-            authDomain: "mypwa-8c271.firebaseapp.com",
-            projectId: "mypwa-8c271",
-            storageBucket: "mypwa-8c271.appspot.com",
-            messagingSenderId: "475764615194",
-            appId: "1:475764615194:web:2db636ff8a5588b2f9c9a3",
-            measurementId: "G-3BQG8M4FLW"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const messaging = firebase.messaging();
 
-        function IntitalizeFireBaseMessaging() {
-            messaging
-                .requestPermission()
-                .then(function () {
-                    console.log("Notification Permission");
-                    return messaging.getToken();
-                })
-                .then(function (token) {
-                    console.log("Token : " + token);
-                    document.getElementById("token").innerHTML = token;
-
-
-                })
-                .catch(function (reason) {
-                    console.log(reason);
-                });
-        }
-
-        messaging.onMessage(function (payload) {
-            console.log(payload);
-            const notificationOption = {
-                body: payload.notification.body,
-                icon: payload.notification.icon
-            };
-
-            if (Notification.permission === "granted") {
-                var notification = new Notification(payload.notification.title, notificationOption);
-
-                notification.onclick = function (ev) {
-                    ev.preventDefault();
-                    window.open(payload.notification.click_action, '_blank');
-                    notification.close();
-                }
-            }
-
-        });
-
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>

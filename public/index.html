@@ -136,16 +136,7 @@
             }
 
         });
-        messaging.onTokenRefresh(function () {
-            messaging.getToken()
-                .then(function (newtoken) {
-                    console.log("New Token : " + newtoken);
-                })
-                .catch(function (reason) {
-                    console.log(reason);
-                })
-        })
-        IntitalizeFireBaseMessaging();
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

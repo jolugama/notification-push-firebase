@@ -57,6 +57,17 @@
          }).then((result) => {
              
              if (result.isConfirmed) {
+                messaging.onTokenRefresh(function () {
+                    messaging.getToken()
+                        .then(function (newtoken) {
+                            console.log("New Token : " + newtoken);
+                        })
+                        .catch(function (reason) {
+                            console.log(reason);
+                        })
+                })
+                IntitalizeFireBaseMessaging();
+
                 //  if (!swReg) {
                 //      return console.log('No hay registro de SW');
                 //  }
@@ -110,24 +121,24 @@
              .then(key => new Uint8Array(key));
      }
 
-     // cancela la subscripción. 
-     let _cancelarSuscripcion = () => {
-         // nos subscribimos a push manager
-         swReg.pushManager.getSubscription().then(subs => {
-             subs.unsubscribe().then(() => _verificaSuscripcion(false));
-         });
-     }
+    //  // cancela la subscripción. 
+    //  let _cancelarSuscripcion = () => {
+    //      // nos subscribimos a push manager
+    //      swReg.pushManager.getSubscription().then(subs => {
+    //          subs.unsubscribe().then(() => _verificaSuscripcion(false));
+    //      });
+    //  }
 
-     // Notificaciones
-     let _verificaSuscripcion = (activadas) => {
-         if (activadas) {
-             notificacionesActivadas = true;
-             console.log('notificaciones activadas');
-         } else {
-             notificacionesActivadas = false;
-             console.log('notificaciones desactivadas');
-         }
-     }
+    //  // Notificaciones
+    //  let _verificaSuscripcion = (activadas) => {
+    //      if (activadas) {
+    //          notificacionesActivadas = true;
+    //          console.log('notificaciones activadas');
+    //      } else {
+    //          notificacionesActivadas = false;
+    //          console.log('notificaciones desactivadas');
+    //      }
+    //  }
      // FIN PRIVADAS
 
      return {
@@ -159,7 +170,7 @@
          // MOSTRAR MENSAJE SI:
          // scroll es mayor a 80%, el usuario expresamente no lo ha denegado previamente, 
          // pregunto al sw, si las notificaciones no están aún activadas
-         if (!app.getMessageDisplayed() && scrollPercent > 80 && Notification.permission !== 'denied' && app.getNotificacionesActivadas() === false) {
+         if (!app.getMessageDisplayed() && scrollPercent > 80 && Notification.permission !== 'denied' && Notification.permission !== 'granted') {
              app.setMessageDisplayed(true);
              console.log('se muestra mensaje para que acepte notificaciones');
              app.showMessageNotification();

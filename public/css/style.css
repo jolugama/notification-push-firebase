@@ -9,6 +9,9 @@
   padding-top: 110px;
 } */
 
+.body2{
+  background: bisque;
+}
 
 .div-img {
   width: 60px;
@@ -18,6 +21,19 @@
   width: 30%;
   background-size: cover;
 }
+
+.peque-images img {
+  width: 30%;
+  background-size: cover;
+}
+
+.peque-images2 img {
+  width: 30%;
+  background-size: cover;
+  transform: rotate(-10deg);
+  margin: 10px;
+}
+
 
 #cancel-btn {
   position: absolute;

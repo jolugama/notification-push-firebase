@@ -1,28 +1,11 @@
 console.log('Hello from service-worker.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
 
+this.workbox.core.setCacheNameDetails({
+    prefix: 'my-pwa',
+    suffix: 'v1'
+  });
 
-importScripts("js/workbox/workbox-core/build/workbox-core.prod.js");
-importScripts("js/workbox/workbox-cacheable-response/build/workbox-cacheable-response.prod.js");
-importScripts("js/workbox/workbox-expiration/build/workbox-expiration.prod.js");
-importScripts("js/workbox/workbox-routing/build/workbox-routing.prod.js");
-importScripts("js/workbox/workbox-strategies/build/workbox-strategies.prod.js");
-// import {
-//     registerRoute
-// } from 'workbox-routing';
-// import {
-//     NetworkFirst,
-//     StaleWhileRevalidate,
-//     CacheFirst,
-// } from 'workbox-strategies';
-
-// Used for filtering matches based on status code, header, or both
-// import {
-//     CacheableResponsePlugin
-// } from 'workbox-cacheable-response';
-// Used to limit entries in cache, remove entries after a certain period of time
-// import {
-//     ExpirationPlugin
-// } from 'workbox-expiration';
 
 // Cache page navigations (html) with a Network First strategy
 this.workbox.routing.registerRoute(
@@ -88,3 +71,64 @@ this.workbox.routing.registerRoute(
         ],
     }),
 );
+
+
+
+
+// Cache Google Fonts with a stale-while-revalidate strategy, with
+// a maximum number of entries.
+this.workbox.routing.registerRoute(
+    ({
+        url
+    }) => url.origin === 'https://fonts.googleapis.com' ||
+    url.origin === 'https://fonts.gstatic.com',
+    new this.workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'google-fonts',
+        plugins: [
+            new this.workbox.expiration.ExpirationPlugin({
+                maxEntries: 20
+            }),
+        ],
+    }),
+);
+
+
+
+
+//google analytics
+this.workbox.googleAnalytics.initialize();
+
+
+
+
+
+// Ensure your build step is configured to include /offline.html as part of your precache manifest.
+// this.workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
+this.workbox.precaching.precacheAndRoute([{
+        url: '/offline.html',
+        revision: null
+    },
+    {
+        url: '/images2/no-image.png',
+        revision: null
+    },
+    // ... other entries ...
+]);
+
+
+
+// Catch routing errors, like if the user is offline
+this.workbox.routing.setCatchHandler(async ({
+    event
+}) => {
+    console.log('event', event);
+    console.log('event.request.destination', event.request.destination);
+    // Return the precached offline page if a document is being requested
+    if (event.request.destination === 'document') {
+        return this.workbox.precaching.matchPrecache('/offline.html');
+    } else if (event.request.destination === 'image') {
+        return this.workbox.precaching.matchPrecache('/images2/no-image.png');
+    }
+    return Response.error();
+});

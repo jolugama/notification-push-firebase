@@ -17,14 +17,18 @@
   width: 60px;
 }
 
-
+.peque-images,.peque-images2,.peque-images2b{
+  text-align: center;
+}
 .peque-images img {
-  width: 40%;
+  width: 28%;
   background-size: cover;
 }
 
+
+
 .peque-images2 img {
-  width: 40%;
+  width: 28%;
   background-size: cover;
   transform: rotate(-10deg);
   margin: 10px;

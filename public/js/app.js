@@ -1,3 +1,5 @@
+
+
 let app = (() => {
     //  const url = window.location.href;
     let messageDisplayed = false;
@@ -12,6 +14,7 @@ let app = (() => {
         // Use the window load event to keep the page load performant
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js');
+            // const wb = new this.workbox('/service-worker.js')
             window.scroll(0, 0);
         });
     }
@@ -236,7 +239,6 @@ messaging.onMessage(function (payload) {
             ev.preventDefault();
             window.open(payload.notification.click_action, '_blank');
             notification.close();
-            º
         }
     }
 

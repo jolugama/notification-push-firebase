@@ -149,13 +149,16 @@ importScripts('js/config-firebase.js');
 
 // onBackgroundMessage
 // la vibración no consigo que se active en móvil
+// https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es
 messaging.setBackgroundMessageHandler( (payload)=> {
     console.log(payload);
     const notification=JSON.parse(payload);
     const notificationOption={
+        title:notification.title,
         body:notification.body,
         icon:notification.icon,
-        vibrate: [125, 75, 125, 275, 200, 275, 125, 75, 125, 275, 200, 600, 200, 600],
+        click_action: "https://www.youtube.com/"
+        
     };
     return self.registration.showNotification(payload.notification.title,notificationOption);
 });

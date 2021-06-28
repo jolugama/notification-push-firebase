@@ -1,6 +1,6 @@
 console.log('Hello from service-worker.js');
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
-importScripts('firebase-messaging-sw.js');
+// importScripts('firebase-messaging-sw.js');
 
 this.workbox.core.setCacheNameDetails({
     prefix: 'my-pwa',

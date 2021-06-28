@@ -106,11 +106,11 @@ this.workbox.googleAnalytics.initialize();
 // this.workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 this.workbox.precaching.precacheAndRoute([{
-        url: '/offline.html',
+        url: 'offline.html',
         revision: null
     },
     {
-        url: '/images2/no-image.png',
+        url: 'images2/no-image.png',
         revision: null
     },
     // ... other entries ...

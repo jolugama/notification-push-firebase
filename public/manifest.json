@@ -1,5 +1,6 @@
 {
     "name": "My notification push",
+    "homepage": "https://jolugama.github.io/notification-push-firebase/public/",
     "short_name": "myNotyPush",
     "theme_color": "#6f43b7",
     "background_color": "#4a83bd",

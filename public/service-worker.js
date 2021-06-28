@@ -106,11 +106,11 @@ this.workbox.googleAnalytics.initialize();
 // this.workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 this.workbox.precaching.precacheAndRoute([{
-        url: 'offline.html',
+        url: 'notification-push-firebase/public/offline.html',
         revision: null
     },
     {
-        url: 'images2/no-image.png',
+        url: 'notification-push-firebase/public/images2/no-image.png',
         revision: null
     },
     // ... other entries ...
@@ -126,9 +126,9 @@ this.workbox.routing.setCatchHandler(async ({
     console.log('event.request.destination', event.request.destination);
     // Return the precached offline page if a document is being requested
     if (event.request.destination === 'document') {
-        return this.workbox.precaching.matchPrecache('/offline.html');
+        return this.workbox.precaching.matchPrecache('notification-push-firebase/public/offline.html');
     } else if (event.request.destination === 'image') {
-        return this.workbox.precaching.matchPrecache('/images2/no-image.png');
+        return this.workbox.precaching.matchPrecache('notification-push-firebase/public/images2/no-image.png');
     }
     return Response.error();
 });

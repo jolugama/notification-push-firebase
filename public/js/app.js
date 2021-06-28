@@ -9,14 +9,18 @@ let app = (() => {
 
 
     var url= window.location.href;
-    var swLocation = '/notification-push-firebase/public/service-worker.js';
+    var swLocation = '/notification-push-firebase/public/firebase-messaging-sw.js';
     if ('serviceWorker' in navigator) {
         // Use the window load event to keep the page load performant
         window.addEventListener('load', () => {
             if (url.includes('localhost') || url.includes('127.0.0.1')) {
-                swLocation = '/service-worker.js';
+                swLocation = '/firebase-messaging-sw.js';
             }
-            navigator.serviceWorker.register(swLocation);
+            navigator.serviceWorker.register(swLocation).then((registration) => {
+                messaging.useServiceWorker(registration);
+              
+                // Request permission and get token.....
+              });
 
             window.scroll(0, 0);
         });

@@ -9,7 +9,7 @@ let app = (() => {
 
 
     var url= window.location.href;
-    var swLocation = '/notification-push-firebase/service-worker.js';
+    var swLocation = '/notification-push-firebase/public/service-worker.js';
     if ('serviceWorker' in navigator) {
         // Use the window load event to keep the page load performant
         window.addEventListener('load', () => {

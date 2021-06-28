@@ -126,9 +126,9 @@ this.workbox.routing.setCatchHandler(async ({
     console.log('event.request.destination', event.request.destination);
     // Return the precached offline page if a document is being requested
     if (event.request.destination === 'document') {
-        return this.workbox.precaching.matchPrecache('notification-push-firebase/public/offline.html');
+        return this.workbox.precaching.matchPrecache('/offline.html');
     } else if (event.request.destination === 'image') {
-        return this.workbox.precaching.matchPrecache('notification-push-firebase/public/images2/no-image.png');
+        return this.workbox.precaching.matchPrecache('/images2/no-image.png');
     }
     return Response.error();
 });

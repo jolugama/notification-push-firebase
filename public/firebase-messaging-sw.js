@@ -152,7 +152,7 @@ this.workbox.routing.setCatchHandler(async ({
 // https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es
 messaging.setBackgroundMessageHandler((payload) => {
     console.log(payload);
-    const notification = JSON.parse(payload);
+    const notification = payload;
     const notificationOption = {
         title: notification.title,
         body: notification.body,

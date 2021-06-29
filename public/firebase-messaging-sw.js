@@ -4,6 +4,7 @@ importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-messaging.js');
 importScripts('js/config-firebase.js');
 
 console.log('Hello from firebase-messaging-sw.js');
+const url='https://jolugama.github.io/notification-push-firebase/public/';
 
 this.workbox.core.setCacheNameDetails({
     prefix: 'my-pwa',
@@ -157,7 +158,7 @@ messaging.setBackgroundMessageHandler((payload) => {
         title: notification.title,
         body: notification.body,
         icon: notification.icon,
-        click_action: "https://www.youtube.com/"
+        click_action: url
 
     };
     return self.registration.showNotification(payload.notification.title, notificationOption);
@@ -170,7 +171,7 @@ messaging.onBackgroundMessage((payload) => {
         title: notification.title,
         body: notification.body,
         icon: notification.icon,
-        click_action: "https://www.youtube.com/"
+        click_action: url
 
     };
     return self.registration.showNotification(payload.notification.title, notificationOption);
@@ -183,14 +184,8 @@ messaging.onBackgroundMessage((payload) => {
 self.addEventListener('notificationclick', e => {
     const notificacion = e.notification;
     const accion = e.action;
-    const url = 'https://www.jolugama.com/blog/2021/05/27/PWA-aplicaciones-web-progresivas/';
     console.log('notificacion', notificacion);
     console.log('accion', accion);
-
-    e.preventDefault(); //prevent the browser from focusing the Notification's tab
-    window.open(url, '_blank');
-
-
     const respuesta = clients.matchAll()
         .then(clientes => {
             let cliente = clientes.find(c => {
@@ -206,6 +201,4 @@ self.addEventListener('notificationclick', e => {
             return notificacion.close();
         });
     e.waitUntil(respuesta);
-
-
 });

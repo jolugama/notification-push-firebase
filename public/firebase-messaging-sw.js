@@ -147,10 +147,9 @@ importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-messaging.js');
 importScripts('js/config-firebase.js');
 
 
-// onBackgroundMessage
-// la vibración no consigo que se active en móvil
+// onBackgroundMessage setBackgroundMessageHandler
 // https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es
-messaging.setBackgroundMessageHandler( (payload)=> {
+messaging.onBackgroundMessage( (payload)=> {
     console.log(payload);
     const notification=JSON.parse(payload);
     const notificationOption={

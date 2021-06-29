@@ -160,8 +160,19 @@ messaging.setBackgroundMessageHandler((payload) => {
         click_action: "https://www.youtube.com/"
 
     };
-    const url = 'https://www.jolugama.com/blog/2021/05/27/PWA-aplicaciones-web-progresivas/';
-    window.open(url, '_blank');
+    return self.registration.showNotification(payload.notification.title, notificationOption);
+});
+
+messaging.onBackgroundMessage((payload) => {
+    console.log(payload);
+    const notification = payload;
+    const notificationOption = {
+        title: notification.title,
+        body: notification.body,
+        icon: notification.icon,
+        click_action: "https://www.youtube.com/"
+
+    };
     return self.registration.showNotification(payload.notification.title, notificationOption);
 });
 

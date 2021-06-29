@@ -8,7 +8,7 @@ console.log('Hello from firebase-messaging-sw.js');
 this.workbox.core.setCacheNameDetails({
     prefix: 'my-pwa',
     suffix: 'v1'
-  });
+});
 
 
 // Cache page navigations (html) with a Network First strategy
@@ -150,17 +150,17 @@ this.workbox.routing.setCatchHandler(async ({
 
 // onBackgroundMessage setBackgroundMessageHandler
 // https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es
-messaging.onBackgroundMessage( (payload)=> {
+messaging.onBackgroundMessage((payload) => {
     console.log(payload);
-    const notification=JSON.parse(payload);
-    const notificationOption={
-        title:notification.title,
-        body:notification.body,
-        icon:notification.icon,
+    const notification = JSON.parse(payload);
+    const notificationOption = {
+        title: notification.title,
+        body: notification.body,
+        icon: notification.icon,
         click_action: "https://www.youtube.com/"
-        
+
     };
-    return self.registration.showNotification(payload.notification.title,notificationOption);
+    return self.registration.showNotification(payload.notification.title, notificationOption);
 });
 
 
@@ -170,13 +170,13 @@ messaging.onBackgroundMessage( (payload)=> {
 self.addEventListener('notificationclick', e => {
     const notificacion = e.notification;
     const accion = e.action;
-    const url= 'https://www.jolugama.com/blog/2021/05/27/PWA-aplicaciones-web-progresivas/';
+    const url = 'https://www.jolugama.com/blog/2021/05/27/PWA-aplicaciones-web-progresivas/';
     console.log('notificacion', notificacion);
     console.log('accion', accion);
 
-    if (accion === 'b-action') {
-        console.log('opción B');
-    }
+    e.preventDefault(); //prevent the browser from focusing the Notification's tab
+    window.open(url, '_blank');
+
 
     const respuesta = clients.matchAll()
         .then(clientes => {

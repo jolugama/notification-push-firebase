@@ -1,6 +1,9 @@
-console.log('Hello from firebase-messaging-sw.js');
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
-// importScripts('firebase-messaging-sw.js');
+importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-messaging.js');
+importScripts('js/config-firebase.js');
+
+console.log('Hello from firebase-messaging-sw.js');
 
 this.workbox.core.setCacheNameDetails({
     prefix: 'my-pwa',
@@ -142,9 +145,7 @@ this.workbox.routing.setCatchHandler(async ({
 
 
 
-importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.6.5/firebase-messaging.js');
-importScripts('js/config-firebase.js');
+
 
 
 // onBackgroundMessage setBackgroundMessageHandler
@@ -162,3 +163,36 @@ messaging.onBackgroundMessage( (payload)=> {
     return self.registration.showNotification(payload.notification.title,notificationOption);
 });
 
+
+
+
+// acción tras hacer click en un notification push
+self.addEventListener('notificationclick', e => {
+    const notificacion = e.notification;
+    const accion = e.action;
+    const url= 'https://www.jolugama.com/blog/2021/05/27/PWA-aplicaciones-web-progresivas/';
+    console.log('notificacion', notificacion);
+    console.log('accion', accion);
+
+    if (accion === 'b-action') {
+        console.log('opción B');
+    }
+
+    const respuesta = clients.matchAll()
+        .then(clientes => {
+            let cliente = clientes.find(c => {
+                return c.visibilityState === 'visible';
+            });
+
+            if (cliente !== undefined) {
+                cliente.navigate(url);
+                cliente.focus();
+            } else {
+                clients.openWindow(url);
+            }
+            return notificacion.close();
+        });
+    e.waitUntil(respuesta);
+
+
+});

@@ -3,14 +3,10 @@ https://firebase.google.com/docs/web/setup/#from-the-cdn_1
 https://console.firebase.google.com/project/mi-pwa-b8f02/settings/general/web:ODA0NWE3YWItZmU5Mi00M2Q3LWJiMDctYmRiMmNjYTEwZDk5
 
 
-https://mi-pwa-b8f02.web.app/
-
-https://jolugama.github.io/notification-push-firebase/public/
-
 
 # Ejemplo push notification para las PWA
 
-Servidor express que sirve la carpeta public en la web. 
+Configurado con notification push en firebase. Toda configuración firebase está en el archivo `js/config-firebase.js` y `js/app.js`
 
 ## instalar packages necesarios
 
@@ -25,14 +21,8 @@ npm install
 ## Ejecutar  servidor modo desarrollo
 
 ```
-npm run dev
+npm run serve
 ```
 
-Si falla:
-```
-echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
-
-Ejecuta el archivo server.js.
 
 

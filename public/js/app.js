@@ -213,10 +213,9 @@ let _enviarNotificacion = (titulo, cuerpo) => {
 
 
 
-
-
-
 //FIREBASE
+
+// messaging firebase.messaging(), in config-firebase.js
 function IntitalizeFireBaseMessaging() {
     messaging
         .requestPermission()

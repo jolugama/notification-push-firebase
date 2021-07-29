@@ -6,6 +6,14 @@ importScripts('js/config-firebase.js');
 console.log('Hello from firebase-messaging-sw.js');
 const url='https://jolugama.github.io/notification-push-firebase/public/';
 
+
+
+
+/*************
+ * workbox
+ *************
+ */
+
 this.workbox.core.setCacheNameDetails({
     prefix: 'my-pwa',
     suffix: 'v1'
@@ -141,13 +149,10 @@ this.workbox.routing.setCatchHandler(async ({
 
 
 
-
-
-
-
-
-
-
+/*************
+ * firebase
+ *************
+ */
 
 // onBackgroundMessage setBackgroundMessageHandler
 // https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es
